@@ -12,7 +12,6 @@ module CarthageCache
       @file_path = file_path
       @swift_version_resolver = swift_version_resolver
       @terminal = terminal
-
     end
 
     def digest
