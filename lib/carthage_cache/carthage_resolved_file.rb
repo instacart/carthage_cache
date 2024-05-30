@@ -12,6 +12,7 @@ module CarthageCache
       @file_path = file_path
       @swift_version_resolver = swift_version_resolver
       @terminal = terminal
+
     end
 
     def digest
@@ -26,6 +27,10 @@ module CarthageCache
       @swift_version ||= swift_version_resolver.swift_version
     end
 
+    def xcodebuild_version
+      @xcodebuild_version ||= `xcodebuild -version`.match(/Xcode ((\d+\.)?\d+\.\d+)/)[1]
+    end
+
     def frameworks
       @frameworks ||= content.each_line.map { |line| extract_framework_name(line) }
     end
@@ -35,7 +40,7 @@ module CarthageCache
       def generate_digest
         terminal.vputs "Generating carthage_cache archive digest using swift version '#{swift_version}' and " \
                       "the content of '#{file_path}'"
-        generated_digest = Digest::SHA256.hexdigest(content + "#{swift_version}")
+        generated_digest = Digest::SHA256.hexdigest(content + xcodebuild_version + "#{swift_version}")
         terminal.vputs "Generated digest: #{generated_digest}"
         generated_digest
       end
