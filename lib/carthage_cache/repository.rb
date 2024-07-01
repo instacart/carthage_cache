@@ -8,6 +8,7 @@ module CarthageCache
     attr_reader :bucket_name
 
     def initialize(bucket_name, client_options = {})
+      Aws.use_bundled_cert!
       @client = ::Aws::S3::Client.new(client_options)
       @bucket_name = bucket_name
     end
