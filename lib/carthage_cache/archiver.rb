@@ -13,7 +13,7 @@ module CarthageCache
       files = files.select(&filter_block) if filter_block
       files = files.sort_by(&:downcase)
       file_list = files.join(' ')
-      executor.execute("tar -C #{archive_path} -cf - #{file_list} | zstd -T0 -19 -o #{File.expand_path(destination_path)}")
+      executor.execute("tar -C #{archive_path} -cf - #{file_list} | zstd -T0 -5 -o #{File.expand_path(destination_path)}")
     end
 
     def unarchive(archive_path, destination_path)

@@ -19,7 +19,7 @@ describe CarthageCache::Archiver do
   describe "#archive" do
 
     it "creates a zip file with the content of the project's 'Carthage/Build' directory" do
-      expected_command = "tar -C #{build_directory} -cf - CarthageCache.lock | zstd -T0 -19 -o #{archive_path}"
+      expected_command = "tar -C #{build_directory} -cf - CarthageCache.lock | zstd -T0 -5 -o #{archive_path}"
       expect(executor).to receive(:execute).with(expected_command)
       archiver.archive(build_directory, archive_path)
     end
@@ -27,7 +27,7 @@ describe CarthageCache::Archiver do
     context "when a filter block is passed" do
 
       it "filters platforms that don't match the filter" do
-        expected_command = "tar -C #{build_directory} -cf -  | zstd -T0 -19 -o #{archive_path}"
+        expected_command = "tar -C #{build_directory} -cf -  | zstd -T0 -5 -o #{archive_path}"
         expect(executor).to receive(:execute).with(expected_command)
         archiver.archive(build_directory, archive_path) do |x|
           x == CarthageCache::CarthageCacheLock::LOCK_FILE_NAME || x == "iOS"
