@@ -9,7 +9,7 @@ describe CarthageCache::Project do
   describe "#archive_key" do
 
     it "returns the digest of the Cartfile.resolved file" do
-      expect(project.archive_key).to eq("076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396")
+      expect(project.archive_key).to eq("ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a")
     end
 
   end
@@ -17,7 +17,7 @@ describe CarthageCache::Project do
   describe "#archive_filename" do
 
     it "returns the name of the archive for the current Cartfile.resolved file" do
-      expect(project.archive_filename).to eq("076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396.zip")
+      expect(project.archive_filename).to eq("ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a.tar.zst")
     end
 
   end
@@ -26,11 +26,11 @@ describe CarthageCache::Project do
     
     it "returns the path of the archive for the current Cartfile.resolved file" do
       project = CarthageCache::Project.new(FIXTURE_PATH, cache_dir_name, "path", terminal, TMP_PATH, MockSwiftVersionResolver.new)
-      expect(project.archive_path).to eq("path/076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396.zip")
+      expect(project.archive_path).to eq("path/ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a.tar.zst")
     end
 
     it "returns the name of the archive for the current Cartfile.resolved file when path is nil" do
-      expect(project.archive_path).to eq("076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396.zip")
+      expect(project.archive_path).to eq("ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a.tar.zst")
     end
 
   end

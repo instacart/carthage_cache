@@ -39,7 +39,7 @@ module CarthageCache
       def generate_digest
         terminal.vputs "Generating carthage_cache archive digest using swift version '#{swift_version}' and " \
                       "the content of '#{file_path}'"
-        generated_digest = Digest::SHA256.hexdigest(content + xcodebuild_version + "#{swift_version}")
+        generated_digest = Digest::SHA256.hexdigest(content + xcodebuild_version + "#{swift_version}" + 'zstd')
         terminal.vputs "Generated digest: #{generated_digest}"
         generated_digest
       end

@@ -10,7 +10,7 @@ describe CarthageCache::CartfileResolvedFile do
   describe "#digest" do
 
     it "returns a digest of the Cartfile.resolved file content" do
-      expect(cartfile_resolved.digest).to eq("076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396")
+      expect(cartfile_resolved.digest).to eq("ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a")
     end
 
   end
