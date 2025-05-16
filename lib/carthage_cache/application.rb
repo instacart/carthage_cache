@@ -16,7 +16,7 @@ module CarthageCache
       @terminal = terminal.new(verbose)
       @archiver = Archiver.new
       @config = Configurator.new(@terminal, project_path, config).config
-      clazz = @config.read_only? ? HTTPRepository : repository
+      clazz = repository
       @repository = clazz.new(@config.bucket_name, @config.hash_object[:aws_s3_client_options])
       @project = Project.new(project_path, CACHE_DIR_NAME, @config.archive_base_path, @terminal, @config.tmpdir, swift_version_resolver.new)
     end

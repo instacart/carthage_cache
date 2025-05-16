@@ -5,10 +5,10 @@ describe CarthageCache::Application do
 
   let(:repository) { double("repository") }
   let(:options) { { repository: double("repository_class", new: repository), terminal: MockTerminal, swift_version_resolver: MockSwiftVersionResolver } }
-  let(:archive_filename) { "076c322e6651c2c39a01790b4b525a79ec17f49e1b847275418ec512a4cb0396.zip" }
+  let(:archive_filename) { "ca1c63573fdcc6772ea9ee3844b1da01c774f31b659e420350151ef5ba74a29a.tar.zst" }
   let(:tmpdir) { File.join(TMP_PATH, "carthage_cache") }
   let(:archive_path) { File.join(tmpdir, archive_filename) }
-  subject(:application) { CarthageCache::Application.new(FIXTURE_PATH, false, { tmpdir: TMP_PATH }, options) }
+  subject(:application) { CarthageCache::Application.new(FIXTURE_PATH, false, { tmpdir: TMP_PATH }, **options) }
 
   describe "#archive_exist?" do
 

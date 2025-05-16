@@ -19,7 +19,7 @@ module CarthageCache
     end
 
     def archive_filename
-      @archive_filename ||= "#{archive_key}.zip"
+      @archive_filename ||= "#{archive_key}.tar.zst"
     end
 
     def archive_path
