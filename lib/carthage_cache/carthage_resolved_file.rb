@@ -7,11 +7,13 @@ module CarthageCache
     attr_reader :file_path
     attr_reader :terminal
     attr_reader :swift_version_resolver
+    attr_reader :version
 
     def initialize(file_path, terminal = CarthageCache::Terminal.new, swift_version_resolver = SwiftVersionResolver.new, version: '')
       @file_path = file_path
       @swift_version_resolver = swift_version_resolver
       @terminal = terminal
+      @version = version
     end
 
     def digest
