@@ -8,7 +8,7 @@ module CarthageCache
     attr_reader :terminal
     attr_reader :swift_version_resolver
 
-    def initialize(file_path, terminal, swift_version_resolver = SwiftVersionResolver.new)
+    def initialize(file_path, terminal = CarthageCache::Terminal.new, swift_version_resolver = SwiftVersionResolver.new, version: '')
       @file_path = file_path
       @swift_version_resolver = swift_version_resolver
       @terminal = terminal
@@ -39,7 +39,7 @@ module CarthageCache
       def generate_digest
         terminal.vputs "Generating carthage_cache archive digest using swift version '#{swift_version}' and " \
                       "the content of '#{file_path}'"
-        generated_digest = Digest::SHA256.hexdigest(content + xcodebuild_version + "#{swift_version}" + 'zstd')
+        generated_digest = Digest::SHA256.hexdigest(content + xcodebuild_version + "#{swift_version}" + version + 'zstd')
         terminal.vputs "Generated digest: #{generated_digest}"
         generated_digest
       end
